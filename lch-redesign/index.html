@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="zh-Hant-HK">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#103d3a">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="李節街宿舍網站改版概念預覽：了解短期住宿服務、環境設施、申請資格、轉介流程、收費及聯絡方法。">
+  <title>李節街宿舍｜讓短暫停留，成為新的開始（概念預覽）</title>
+  <style>
+    :root{--forest:#133e39;--forest-2:#1b5b52;--ink:#24352f;--cream:#f8f7f2;--white:#fffefa;--line:#dce4dc;--sage:#e8eee5;--orange:#df8e63;--muted:#64746e;--max:1152px}
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:94px}
+    body{margin:0;background:var(--cream);color:var(--ink);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.75}
+    a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}img,svg{max-width:100%}
+    :focus-visible{outline:3px solid #d88c53;outline-offset:4px;border-radius:3px}
+    .container{max-width:var(--max);margin:0 auto;padding:0 24px}
+    .skip{position:absolute;left:12px;top:-90px;background:#fff;padding:10px 16px;z-index:99}.skip:focus{top:12px}
+    .notice{background:#e5ede5;text-align:center;font-size:12px;color:#38524c;letter-spacing:.05em;padding:6px 20px}
+    .notice b{display:inline-block;width:6px;height:6px;background:#df8e63;border-radius:50%;margin-right:9px;vertical-align:middle}
+    .header{background:rgba(248,247,242,.97);border-bottom:1px solid rgba(25,72,66,.09);position:sticky;top:0;z-index:20;backdrop-filter:blur(12px)}
+    .header-inner{display:flex;align-items:center;gap:24px;min-height:82px}
+    .brand{display:flex;align-items:center;gap:13px;min-width:222px}
+    .brand-symbol{width:42px;height:42px;border-radius:12px;background:var(--forest);display:grid;place-items:center;color:white;font-weight:900;font-size:18px;letter-spacing:-.08em}
+    .brand strong{display:block;font-size:17px;line-height:1.3;letter-spacing:.03em}.brand small{display:block;font-size:10px;color:#718079;letter-spacing:.15em;margin-top:2px}
+    .nav{display:flex;gap:23px;margin-left:auto;align-items:center;font-size:13px;font-weight:650}.nav a:hover{color:var(--forest-2)}
+    .nav-cta{border:1px solid var(--forest);background:var(--forest);color:white!important;padding:11px 18px;border-radius:8px;white-space:nowrap}.nav-cta:hover{background:#235f55}
+    .menu-button{display:none;background:none;border:1px solid #c9d9ce;color:var(--forest);border-radius:8px;padding:7px 12px;margin-left:auto}
+    .hero{padding:67px 0 75px;overflow:hidden}
+    .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:55px}
+    .eyebrow{color:var(--forest-2);font-size:11px;letter-spacing:.21em;font-weight:800}
+    h1,h2,h3,p{margin-top:0}h1{font-size:clamp(42px,4.9vw,72px);letter-spacing:-.035em;line-height:1.25;font-weight:850;margin:25px 0 24px}
+    h1 em{color:var(--forest-2);font-style:normal} .hero-text{font-size:16px;line-height:1.95;color:#63726c;max-width:495px}
+    .pills{display:flex;flex-wrap:wrap;gap:8px;margin:25px 0 34px}
+    .pill{font-size:12px;font-weight:650;border:1px solid #d5e2d7;background:#edf2e9;color:var(--forest-2);border-radius:50px;padding:7px 14px}
+    .actions{display:flex;flex-wrap:wrap;gap:12px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 23px;border-radius:8px;font-weight:800;font-size:14px;transition:transform .15s,background .15s}
+    .btn:hover{transform:translateY(-2px)}.btn-primary{color:#fff;background:var(--forest)}.btn-primary:hover{background:#235c55}
+    .btn-outline{color:var(--forest);border:1px solid #b8cec2;background:transparent}.btn-outline:hover{background:#ecf1e9}
+    .btn-light{background:#fff;color:var(--forest)}.btn-light:hover{background:#eaf1e8}
+    .scene{position:relative;isolation:isolate;border-radius:210px 210px 28px 28px;min-height:530px;background:#dae6db;display:flex;align-items:end;padding:23px;overflow:hidden;box-shadow:0 28px 70px #183b341c}
+    .scene:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 77% 19%,#fff6d7 0%,transparent 35%),linear-gradient(135deg,#e0e8d9,#aecdc0);z-index:-1}
+    .scene-illustration{position:absolute;top:0;left:0;width:100%;height:100%}
+    .scene-caption{position:relative;margin-left:auto;width:84%;padding:21px 23px;border-radius:14px;background:#fffef9ed;box-shadow:0 12px 35px #133d3933}
+    .scene-caption span{font-size:11px;color:#65766d;letter-spacing:.1em}.scene-caption strong{display:block;font-size:18px;line-height:1.55;color:var(--forest);margin-top:3px}
+    .scene-note{position:absolute;top:23px;right:22px;background:#ffffffc4;color:#64766c;font-size:10px;border-radius:99px;padding:6px 10px}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid #e1e8dc;background:#fffefa;border-radius:15px;margin-top:67px;box-shadow:0 14px 46px #1f403a0a}
+    .stat{padding:25px 32px}.stat+.stat{border-left:1px solid #e4eae1}.stat strong{display:block;font-family:Georgia,serif;color:var(--forest);font-size:34px;line-height:1.3}
+    .stat small{display:block;color:#64746c;font-size:12px;font-weight:600;margin-top:5px}
+    section{padding:93px 0}.section-heading{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:37px}.kicker{font-weight:850;font-size:11px;letter-spacing:.18em;color:#b97753}
+    h2{font-size:clamp(29px,3.1vw,42px);letter-spacing:-.025em;line-height:1.35;color:var(--forest);margin:12px 0 0}
+    .section-heading p{max-width:420px;color:#67766e;font-size:14px;line-height:1.9;margin:0}
+    .about{background:white}
+    .about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:76px;align-items:start}
+    .about-intro{font-size:16px;line-height:2.05;color:#5c6b64;margin-top:25px}
+    .quote-box{padding:26px;border-left:3px solid var(--orange);background:#f6f6ee;color:var(--forest);border-radius:0 10px 10px 0;font-size:14px;margin-top:32px}
+    .principles{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .principle{background:#f8f9f4;border:1px solid #edf0e8;border-radius:16px;padding:27px;min-height:190px}
+    .principle:first-child{grid-column:1/-1;min-height:175px;background:var(--forest);color:white}
+    .symbol{display:grid;place-items:center;background:#e2eae0;color:var(--forest);height:38px;width:38px;border-radius:10px;font-size:20px;margin-bottom:14px}.principle:first-child .symbol{background:#ffffff24;color:#fff}
+    .principle h3{font-size:17px;margin:0 0 7px}.principle p{font-size:13px;line-height:1.85;color:#6b7b72;margin:0}.principle:first-child p{color:#d6e5dc}
+    .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+    .feature{background:white;padding:26px 25px;border:1px solid #e8ede4;border-radius:15px;min-height:186px;transition:transform .2s,box-shadow .2s}
+    .feature:hover{transform:translateY(-3px);box-shadow:0 16px 35px #22463910}
+    .feature-icon{background:#e8f0e8;color:var(--forest);width:44px;height:44px;display:grid;place-items:center;border-radius:12px;margin-bottom:17px;font-size:19px}
+    .feature h3{font-size:16px;color:#1b3e38;margin:0 0 7px}.feature p{font-size:13px;color:#718078;margin:0;line-height:1.85}
+    .soft{background:#edf2eb}
+    .eligibility-grid{display:grid;grid-template-columns:1fr 1fr;gap:42px;align-items:start}
+    .requirements{display:grid;gap:12px}
+    .requirement{background:#fffefa;border-radius:11px;padding:15px 19px;display:flex;gap:14px;font-size:14px;line-height:1.75;align-items:start}
+    .check{color:#2b7665;flex:none;font-weight:900}
+    .side-panel{background:var(--forest);border-radius:20px;padding:37px;color:white;position:relative;overflow:hidden}
+    .side-panel:before{content:"";position:absolute;right:-110px;top:-110px;width:280px;height:280px;border:48px solid #ffffff0d;border-radius:50%}
+    .side-panel h3{font-size:25px;margin:0 0 15px;position:relative}.side-panel p{font-size:14px;color:#cee0d8;line-height:1.95;position:relative}
+    .side-panel ul{padding-left:21px;color:#edf3eb;line-height:2;font-size:13px;position:relative}
+    .process .section-heading{margin-bottom:55px}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+    .step{position:relative;border-top:2px solid #cedcd0;padding:23px 10px 0 0}.step:before{content:"";position:absolute;width:11px;height:11px;border-radius:50%;background:var(--orange);left:0;top:-6.5px;box-shadow:0 0 0 5px #f8f7f2}
+    .step-number{color:#b38c73;font:italic 28px Georgia,serif}.step h3{font-size:17px;color:var(--forest);margin:8px 0}.step p{font-size:13px;color:#6d7b72;line-height:1.9}
+    .fees{background:#fffefa}.fees-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .fee-card{border:1px solid #dce8df;border-radius:16px;padding:30px 33px;background:#f8faf7}
+    .fee-card.highlight{background:#e5eee6}.fee-label{font-size:13px;color:#5d7066;font-weight:750}
+    .fee-card strong{display:block;font:700 48px/1.45 Georgia,serif;color:var(--forest);margin:12px 0 3px}
+    .fee-card strong small{font:500 13px system-ui;color:#69776d;margin-left:8px}
+    .fee-card p{margin:0;font-size:12px;color:#64766c}
+    .warning{margin-top:18px;padding:18px 22px;background:#fff6eb;border:1px solid #f0dac0;border-radius:10px;color:#7d5f41;font-size:12px;line-height:1.9}
+    .faq{background:var(--cream)}.faq-layout{display:grid;grid-template-columns:.75fr 1.25fr;gap:76px}
+    .faq details{border-bottom:1px solid #d9e4d9;padding:18px 0}.faq summary{cursor:pointer;font-weight:750;font-size:15px;color:#29483e;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .faq summary::-webkit-details-marker{display:none}.faq summary:after{content:"＋";font-size:22px;font-weight:400}.faq details[open] summary:after{content:"−"}
+    .faq details p{color:#66766e;font-size:14px;line-height:1.9;margin:15px 32px 4px 0}
+    .contact{background:var(--forest);padding:78px 0 85px;color:white}
+    .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+    .contact h2{color:white;margin-bottom:20px}.contact .contact-lead{color:#d0e0d6;line-height:1.9;max-width:490px}
+    .contact-card{background:#ffffff12;border:1px solid #ffffff25;padding:29px 30px;border-radius:17px}
+    .contact-card dl{margin:0}.contact-card dt{font-size:11px;color:#a8c9b6;letter-spacing:.09em;margin-top:16px}.contact-card dt:first-child{margin-top:0}
+    .contact-card dd{margin:3px 0;font-size:17px;font-weight:650}.contact-card dd a:hover{text-decoration:underline}
+    .contact-card .maplink{display:inline-block;margin-top:19px;font-weight:750;font-size:13px;text-decoration:underline;text-underline-offset:5px}
+    footer{background:#0f302d;color:#bed2c8;font-size:12px;padding:26px 0 35px}
+    .footer-grid{display:flex;align-items:start;justify-content:space-between;gap:30px}.footer-grid p{margin:0 0 8px}.footer-links{display:flex;flex-wrap:wrap;gap:15px}.footer-links a{text-decoration:underline;text-underline-offset:4px}
+    @media(max-width:940px){.hero-grid,.about-grid,.eligibility-grid,.contact-grid,.faq-layout{gap:35px}.nav{gap:12px}.nav a:not(.nav-cta){font-size:12px}.brand{min-width:auto}}
+    @media(max-width:780px){html{scroll-padding-top:75px}.header-inner{min-height:72px}.menu-button{display:block}.nav{display:none;position:absolute;top:100%;left:0;right:0;padding:22px 24px;background:var(--cream);border-bottom:1px solid var(--line);box-shadow:0 15px 35px #1a3b3219;margin:0;flex-direction:column;align-items:stretch;gap:4px}.nav.open{display:flex}.nav a{padding:9px 6px}.nav-cta{margin-top:10px;text-align:center}
+      .hero{padding:48px 0 57px}.hero-grid,.about-grid,.eligibility-grid,.contact-grid,.faq-layout{grid-template-columns:1fr}.hero-grid{gap:44px}.scene{min-height:435px;max-width:530px;margin:auto;width:100%}
+      .stats{grid-template-columns:1fr 1fr;margin-top:48px}.stat{padding:20px 25px}.stat:nth-child(3){border-left:none;border-top:1px solid #e4eae1}.stat:nth-child(4){border-top:1px solid #e4eae1}
+      section{padding:68px 0}.section-heading{display:block}.section-heading p{margin-top:16px}.principles{gap:12px}.features-grid{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr 1fr;row-gap:32px}.about-grid{gap:30px}.faq-layout{gap:12px}
+    }
+    @media(max-width:520px){.container{padding:0 20px}.brand-symbol{width:38px;height:38px}.brand strong{font-size:15px}.brand small{font-size:9px}h1{font-size:40px}.hero-text{font-size:14px}.pills{margin-bottom:26px}.actions{gap:10px}.btn{padding:13px 17px;font-size:13px}.scene{min-height:355px;border-radius:160px 160px 22px 22px}.scene-caption{width:100%}.scene-caption strong{font-size:16px}
+      .stat strong{font-size:29px}.stat{padding:18px 18px}.features-grid,.fees-grid{grid-template-columns:1fr}.principles{grid-template-columns:1fr}.principle:first-child{grid-column:auto}.feature{min-height:auto}.steps{grid-template-columns:1fr}.step{padding-bottom:5px}
+      .fee-card strong{font-size:42px}.section-heading{margin-bottom:27px}.side-panel{padding:27px}.footer-grid{display:block}.footer-links{margin-top:14px}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
+  </style>
+</head>
+<body>
+<a href="#main" class="skip">跳至主要內容</a>
+<div class="notice"><b></b>網站改版概念預覽｜非現行官方網站，內容須經服務單位確認</div>
+<header class="header">
+  <div class="container header-inner">
+    <a class="brand" href="#top" aria-label="李節街宿舍返回頁首"><span class="brand-symbol" aria-hidden="true">雅</span><span><strong>李節街宿舍</strong><small>ST. JAMES' SETTLEMENT</small></span></a>
+    <button class="menu-button" id="menu-button" aria-controls="navigation" aria-expanded="false" aria-label="開啟導覽選單">☰ 選單</button>
+    <nav class="nav" id="navigation" aria-label="主要導覽">
+      <a href="#about">關於服務</a><a href="#facilities">住宿設施</a><a href="#eligibility">申請資格</a><a href="#process">申請流程</a><a href="#fees">服務收費</a><a class="nav-cta" href="#contact">聯絡我們 ↗</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <div id="top"></div>
+  <div class="hero"><div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">SHORT-TERM HOSTEL · WAN CHAI</div>
+        <h1>一個安心<br>落腳的地方。<br><em>一步一步，<br>重新出發。</em></h1>
+        <p class="hero-text">李節街宿舍為露宿及面臨露宿危機的成年男性提供短期住宿與生活支援，讓舍友在安穩的環境中整理生活、規劃下一步。</p>
+        <div class="pills"><span class="pill">灣仔區</span><span class="pill">男士短期住宿</span><span class="pill">一般由社工轉介</span></div>
+        <div class="actions"><a href="#process" class="btn btn-primary">了解申請流程 <span aria-hidden="true">↗</span></a><a href="#contact" class="btn btn-outline">聯絡宿舍 <span aria-hidden="true">→</span></a></div>
+      </div>
+      <div class="scene" role="img" aria-label="以床、窗戶和陽光象徵溫暖住宿環境的抽象插畫，並非宿舍實景">
+        <svg class="scene-illustration" viewBox="0 0 510 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs><linearGradient id="wall" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#dce8df"/><stop offset="1" stop-color="#a8c9bb"/></linearGradient><linearGradient id="window" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#b2d6d3"/><stop offset="1" stop-color="#f0e9c4"/></linearGradient></defs>
+          <path d="M0 0H510V560H0Z" fill="url(#wall)"/>
+          <path d="M0 429Q200 395 510 438V560H0Z" fill="#a1bba7"/>
+          <rect x="282" y="95" width="160" height="223" rx="72" fill="#fff9e7" stroke="#ecf1de" stroke-width="12"/>
+          <rect x="302" y="116" width="120" height="182" rx="56" fill="url(#window)"/>
+          <path d="M362 118V302M301 209H425" stroke="#eef5e8" stroke-width="9"/>
+          <circle cx="378" cy="152" r="27" fill="#fff5ca" opacity=".8"/>
+          <path d="M302 259Q347 228 422 268V299H302Z" fill="#7aafa2" opacity=".42"/>
+          <rect x="37" y="378" width="323" height="25" rx="8" fill="#204c45"/>
+          <rect x="48" y="396" width="15" height="104" rx="6" fill="#204c45"/><rect x="333" y="396" width="15" height="104" rx="6" fill="#204c45"/>
+          <rect x="47" y="330" width="304" height="68" rx="22" fill="#f6f4e8"/>
+          <rect x="42" y="299" width="76" height="90" rx="20" fill="#fefdf4"/>
+          <path d="M124 345Q227 318 347 345V394H120Z" fill="#d39174"/>
+          <path d="M125 367Q225 342 348 367" fill="none" stroke="#e6ad8d" stroke-width="5" opacity=".7"/>
+          <rect x="362" y="351" width="69" height="17" rx="5" fill="#38665b"/><rect x="372" y="367" width="8" height="81" rx="3" fill="#38665b"/><rect x="413" y="367" width="8" height="81" rx="3" fill="#38665b"/>
+          <rect x="375" y="305" width="42" height="45" rx="5" fill="#f8f4df"/>
+          <path d="M393 304q-27-42-19-63q30 6 22 59m3 6q33-53 47-54q4 28-43 54" fill="#437c63"/>
+          <path d="M38 207v106" stroke="#7da897" stroke-width="6" stroke-linecap="round"/><circle cx="38" cy="201" r="21" fill="#f9e4a8"/>
+          <circle cx="83" cy="146" r="7" fill="#ffffff91"/><circle cx="109" cy="122" r="4" fill="#ffffffa0"/>
+        </svg>
+        <span class="scene-note">空間意象插圖・非實景</span>
+        <div class="scene-caption"><span>EVERY NEW BEGINNING NEEDS A PLACE TO START</span><strong>讓日常重拾節奏，<br>讓未來慢慢清晰。</strong></div>
+      </div>
+    </div>
+    <div class="stats" aria-label="服務概覽">
+      <div class="stat"><strong>61</strong><small>住宿床位</small></div>
+      <div class="stat"><strong>24<span style="font:600 15px system-ui">小時</span></strong><small>宿舍職員當值</small></div>
+      <div class="stat"><strong>6<span style="font:600 15px system-ui">個月</span></strong><small>一般住宿期限不多於</small></div>
+      <div class="stat"><strong>18+</strong><small>適合成年男性居民</small></div>
+    </div>
+  </div></div>
+  <section class="about" id="about"><div class="container about-grid">
+    <div><div class="kicker">01 / ABOUT OUR SERVICE</div><h2>不止有一張床，<br>更有重新規劃生活的空間。</h2><p class="about-intro">我們期望透過短期住宿，讓舍友建立穩定的日常生活習慣、學習與人相處，並與轉介社工共同探索未來的長遠住宿安排。</p><div class="quote-box">「短暫停留，也可以成為向前邁進的重要一步。」</div></div>
+    <div class="principles">
+      <article class="principle"><div class="symbol" aria-hidden="true">⌂</div><h3>安穩的日常生活</h3><p>提供有規律的住宿環境，並由當值職員協助舍友適應群體生活。</p></article>
+      <article class="principle"><div class="symbol" aria-hidden="true">♡</div><h3>健康與生活支援</h3><p>定期安排護士健康檢查及醫護諮詢。</p></article>
+      <article class="principle"><div class="symbol" aria-hidden="true">↗</div><h3>連結下一步</h3><p>提供社工就業配對支援，協助規劃長遠住宿安排。</p></article>
+    </div>
+  </div></section>
+  <section id="facilities"><div class="container">
+    <div class="section-heading"><div><div class="kicker">02 / OUR FACILITIES</div><h2>貼近日常的住宿設施</h2></div><p>以實用、舒適與方便為核心，支援舍友每天的起居需要。</p></div>
+    <div class="features-grid">
+      <article class="feature"><div class="feature-icon" aria-hidden="true">▤</div><h3>個人床位及儲物</h3><p>以單人床為主，另設少量上下格床。每個床位備有床頭燈、可上鎖衣櫃及床上用品。</p></article>
+      <article class="feature"><div class="feature-icon" aria-hidden="true">❋</div><h3>空調與洗浴</h3><p>房間及大廳設有風扇，夏季提供冷氣；浴室全年供應冷、熱水。</p></article>
+      <article class="feature"><div class="feature-icon" aria-hidden="true">▣</div><h3>共用休憩空間</h3><p>大廳備有電視、報紙及書刊，方便休息及交流。</p></article>
+      <article class="feature"><div class="feature-icon" aria-hidden="true">♨</div><h3>茶水間</h3><p>設微波爐供翻熱食物，並有冷熱飲用水。</p></article>
+      <article class="feature"><div class="feature-icon" aria-hidden="true">◌</div><h3>洗衣服務</h3><p>提供收費相宜的洗衣及乾衣服務供舍友選擇。</p></article>
+      <article class="feature"><div class="feature-icon" aria-hidden="true">↗</div><h3>便利的灣仔位置</h3><p>設有升降機直達宿舍樓層，鄰近公共交通及生活設施。</p></article>
+    </div>
+  </div></section>
+  <section class="soft" id="eligibility"><div class="container">
+    <div class="section-heading"><div><div class="kicker">03 / ELIGIBILITY</div><h2>誰可以申請？</h2></div><p>以下根據原有網站公開的入宿要求整理，最終以服務單位審核為準。</p></div>
+    <div class="eligibility-grid">
+      <div class="requirements">
+        <div class="requirement"><span class="check">✓</span><span>18 歲或以上、露宿或面臨露宿危機的香港男性居民。</span></div>
+        <div class="requirement"><span class="check">✓</span><span>具備自我照顧能力，並適合群體生活。</span></div>
+        <div class="requirement"><span class="check">✓</span><span>健康狀況符合宿舍的入宿要求，包括傳染病相關規定。</span></div>
+        <div class="requirement"><span class="check">✓</span><span>沒有濫用藥物或滋擾行為。</span></div>
+        <div class="requirement"><span class="check">✓</span><span>收入一般不超過公屋入住相關限額；有經濟困難可向社工反映。</span></div>
+        <div class="requirement"><span class="check">✓</span><span>有可實行的離宿計劃及時限，並可繳付所需按金及上期租金。</span></div>
+      </div>
+      <aside class="side-panel"><h3>申請前，請留意</h3><p>一般經由社會福利署或志願機構的社工轉介，並由宿舍按個別情況評估。</p><ul><li>入宿前須提交由政府認可註冊西醫檢驗的照肺報告。</li><li>一般住宿期不多於 6 個月；如有需要，可透過轉介社工提出續期申請，並由服務單位考慮。</li><li>本頁不是即時申請系統，亦不收集任何個人資料。</li></ul></aside>
+    </div>
+  </div></section>
+  <section class="process" id="process"><div class="container">
+    <div class="section-heading"><div><div class="kicker">04 / APPLICATION PROCESS</div><h2>申請服務，從了解開始</h2></div><p>如正在協助有需要人士，歡迎先與轉介社工及宿舍了解詳情。</p></div>
+    <div class="steps">
+      <article class="step"><span class="step-number">01</span><h3>社工轉介</h3><p>一般由社署或志願機構社工協助提出轉介。</p></article>
+      <article class="step"><span class="step-number">02</span><h3>入宿評估</h3><p>宿舍按照一致的審核標準，評估申請者的住宿需要及適切性。</p></article>
+      <article class="step"><span class="step-number">03</span><h3>準備文件</h3><p>按要求準備健康檢查文件及入宿所需資料，並確認費用。</p></article>
+      <article class="step"><span class="step-number">04</span><h3>住宿與規劃</h3><p>入住後與職員、社工合作，逐步落實日常及長遠住宿計劃。</p></article>
+    </div>
+  </div></section>
+  <section class="fees" id="fees"><div class="container">
+    <div class="section-heading"><div><div class="kicker">05 / FEES</div><h2>住宿收費參考</h2></div><p>以下數字轉載自原有網站的公開資料，可能變動，請於正式申請前直接查詢。</p></div>
+    <div class="fees-grid">
+      <article class="fee-card highlight"><div class="fee-label">非綜援受助人士</div><strong>HK$1,890 <small>/ 每月</small></strong><p>原網站公布的每月住宿費用</p></article>
+      <article class="fee-card"><div class="fee-label">綜援受助人士</div><strong>HK$2,520 <small>/ 每月</small></strong><p>原網站公布的每月住宿費用</p></article>
+    </div>
+    <p class="warning"><strong>請注意：</strong>此為設計概念的資料搬遷示例，收費未經服務單位再次確認。原網站列有按金及上期租金要求；詳情、最新收費及其他可能適用條款，請致電 <a href="tel:+85228657590"><u>2865 7590</u></a> 核實。</p>
+  </div></section>
+  <section class="faq" id="faq"><div class="container faq-layout">
+    <div><div class="kicker">06 / QUESTIONS & ANSWERS</div><h2>常見問題</h2><p class="about-intro">找不到所需資訊？歡迎直接致電宿舍職員查詢。</p></div>
+    <div>
+      <details><summary>可以自行填表申請入住嗎？</summary><p>原網站說明所有入住申請一般由社署或志願機構社工轉介。可先與熟悉個案的社工聯絡，或致電宿舍了解適切的轉介途徑。</p></details>
+      <details><summary>最多可以住多久？</summary><p>一般住宿期不多於 6 個月。如遇到困難，可經轉介社工提出續期申請，由服務單位按個別情況考慮。</p></details>
+      <details><summary>宿舍有職員夜間當值嗎？</summary><p>原網站顯示宿舍設有 24 小時職員當值，舍友可 24 小時出入。實際安排及宿舍守則以職員說明為準。</p></details>
+      <details><summary>如何提前退出服務？</summary><p>原網站說明舍友可提前一個月通知宿舍，提早結束服務。如不再符合入宿條件或違反宿舍守則，服務亦可能終止。</p></details>
+    </div>
+  </div></section>
+  <section class="contact" id="contact"><div class="container contact-grid">
+    <div><div class="kicker" style="color:#e6ab83">07 / CONTACT US</div><h2>有需要時，<br>我們願意提供資訊。</h2><p class="contact-lead">歡迎轉介社工或有需要人士致電了解服務及申請安排。此概念網頁不設線上申請表格。</p><div class="actions"><a class="btn btn-light" href="tel:+85228657590">立即致電 2865 7590 <span aria-hidden="true">↗</span></a></div></div>
+    <div class="contact-card"><dl><dt>地址 ADDRESS</dt><dd>香港灣仔李節街 1 號 1–2 樓</dd><dt>電話 TELEPHONE</dt><dd><a href="tel:+85228657590">+852 2865 7590</a></dd><dt>傳真 FAX</dt><dd>+852 2804 1752</dd></dl><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=1+Li+Chit+Street+Wan+Chai+Hong+Kong" target="_blank" rel="noopener noreferrer">在 Google Maps 查看位置 ↗</a></div>
+  </div></section>
+</main>
+<footer><div class="container footer-grid">
+  <div><p><strong>李節街宿舍 · 網站改版概念</strong></p><p>此頁為非官方網站設計示範，並不取代聖雅各福群會現行服務資訊。</p><p>© <span id="year">2026</span> Concept demonstration.</p></div>
+  <div class="footer-links"><a href="https://lch.sjs.org.hk/" target="_blank" rel="noopener noreferrer">原有網站</a><a href="https://www.sjs.org.hk/tc/contact-us/location.php" target="_blank" rel="noopener noreferrer">機構官方聯絡資料</a><a href="#top">返回頁首 ↑</a></div>
+</div></footer>
+<script>
+  (function(){
+    var button=document.getElementById('menu-button'),nav=document.getElementById('navigation');
+    button.addEventListener('click',function(){
+      var open=nav.classList.toggle('open');
+      button.setAttribute('aria-expanded',String(open));
+      button.textContent=open?'✕ 關閉':'☰ 選單';
+      button.setAttribute('aria-label',open?'關閉導覽選單':'開啟導覽選單');
+    });
+    nav.querySelectorAll('a').forEach(function(link){link.addEventListener('click',function(){nav.classList.remove('open');button.setAttribute('aria-expanded','false');button.textContent='☰ 選單';button.setAttribute('aria-label','開啟導覽選單')})});
+    document.getElementById('year').textContent=String(new Date().getFullYear());
+  })();
+</script>
+</body>
+</html>
