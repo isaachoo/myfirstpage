@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="zh-Hant-HK">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#133e39">
+<title>內容管理後台 · 李節街宿舍 (DEMO)</title>
+<style>
+:root{--forest:#123b36;--forest2:#205e52;--ink:#273a34;--muted:#68786f;--border:#e2e9e3;--canvas:#f5f7f4;--white:#fff;--yellow:#fff3d7;--green:#e7f4e9;--red:#a7483f;--shadow:0 14px 32px rgba(23,55,39,.05)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--canvas);color:var(--ink);font:14px/1.65 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}a:hover{text-decoration:none}[hidden]{display:none!important} :focus-visible{outline:3px solid #e8a268;outline-offset:3px}
+.demo-strip{height:auto;min-height:36px;padding:6px 20px;background:#e7dac1;color:#5a4930;text-align:center;font-size:12px;letter-spacing:.015em;position:relative;z-index:60}
+.shell{display:flex;min-height:calc(100vh - 36px)}
+.sidebar{width:248px;background:var(--forest);color:#d2e3d9;position:sticky;top:0;height:calc(100vh - 36px);overflow-y:auto;flex:none;display:flex;flex-direction:column;padding:26px 17px 20px}
+.brand{display:flex;gap:12px;align-items:center;padding:2px 10px 28px;border-bottom:1px solid #ffffff19}.brandmark{width:40px;height:40px;border:1px solid #fff5;border-radius:12px;display:grid;place-items:center;font-weight:900;font-size:18px;color:#fff}.brand strong{display:block;font-size:15px;color:white;line-height:1.35}.brand span{display:block;color:#9fbdb1;font-size:11px;margin-top:3px;letter-spacing:.12em}
+.navlabel{margin:24px 13px 8px;color:#80a498;font-size:10px;letter-spacing:.14em;font-weight:700}.snav{display:grid;gap:4px}
+.navbtn{background:none;border:0;color:#d5e4dd;display:flex;align-items:center;gap:12px;padding:12px 13px;border-radius:9px;text-align:left;width:100%;font-weight:600;font-size:13px}
+.navbtn:hover{background:#ffffff14}.navbtn.active{background:#e9f0e7;color:#173e38}.navicon{display:grid;place-items:center;width:22px;font-size:18px;line-height:1}
+.sidefooter{margin-top:auto;padding:26px 10px 0;color:#a5beb3;font-size:11px}.sidefooter a{display:inline-block;color:#d8e8df;text-decoration:underline;text-underline-offset:4px}.userchip{display:flex;align-items:center;gap:9px;padding:12px 0;margin-top:14px;border-top:1px solid #ffffff27}.avatar{background:#dce9df;border-radius:50%;width:32px;height:32px;display:grid;place-items:center;color:#315b4f;font-weight:900}
+.layout{flex:1;min-width:0}.topbar{height:82px;background:#fff;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:0 38px;gap:12px}.topbar h1{font-size:20px;margin:0;color:#183d35;letter-spacing:-.015em}.topbar p{font-size:12px;color:#85958b;margin:1px 0 0}.top-actions{display:flex;align-items:center;gap:9px}.workspace{padding:35px 38px 70px;max-width:1320px;margin:auto}
+.tag{border-radius:50px;background:#edf3e9;color:#426856;font-size:11px;padding:5px 10px;font-weight:800}.tag.warn{background:#fff0d5;color:#906a2e}.tag.live{background:#dcf1e4;color:#28764e}
+.button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#fff;border:1px solid #cddbd0;padding:10px 16px;border-radius:9px;color:var(--forest);font-weight:750;font-size:13px;transition:background .2s,transform .2s}
+.button:hover{background:#edf4eb;transform:translateY(-1px)}.button.primary{background:var(--forest);border-color:var(--forest);color:#fff}.button.primary:hover{background:var(--forest2)}.button.danger{color:var(--red);border-color:#ecc8c2}.button.small{padding:7px 12px;font-size:12px}.button:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.pagehead{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:28px}.eyebrow{color:#b47b55;font-size:10px;letter-spacing:.2em;font-weight:850}.pagehead h2{font-size:29px;letter-spacing:-.025em;color:var(--forest);line-height:1.25;margin:8px 0 8px}.pagehead p{color:var(--muted);margin:0;font-size:13px;max-width:700px}.page-actions{display:flex;gap:9px;flex-wrap:wrap}
+.banner{background:#fdf6e7;border:1px solid #f0e1b8;padding:15px 18px;color:#7d633b;border-radius:11px;margin:0 0 24px;font-size:12px;line-height:1.85}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:26px}.metric{background:#fff;border:1px solid var(--border);border-radius:16px;padding:25px;box-shadow:var(--shadow)}.metric-icon{height:38px;width:38px;background:#eaf2e8;border-radius:10px;display:grid;place-items:center;font-size:19px;margin-bottom:20px}.metric b{display:block;font-size:34px;color:var(--forest);line-height:1.3;font-family:Georgia,serif}.metric span{font-size:12px;color:var(--muted);font-weight:650}
+.panels{display:grid;grid-template-columns:1.13fr .87fr;gap:17px}.panel{background:white;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:26px;min-width:0}.panel h3{font-size:17px;margin:0 0 7px;color:var(--forest)}.panel .hint{color:#8c9992;font-size:12px;margin:0 0 22px}
+.quicklinks{display:grid;gap:11px}.quicklink{display:flex;align-items:center;gap:14px;padding:14px 15px;background:#f6f9f5;border:1px solid #e6eee6;border-radius:10px;cursor:pointer;text-align:left;width:100%}.quicklink:hover{background:#edf5eb}.quickicon{background:#e1eadd;border-radius:9px;height:40px;width:40px;display:grid;place-items:center;font-size:19px}.quicklink strong{font-size:13px;color:#234b40;display:block}.quicklink small{font-size:11px;color:#7b8a80;display:block}.quicklink .arr{margin-left:auto;color:#59756a}
+.audit{display:grid;gap:0}.auditrow{display:flex;gap:12px;border-bottom:1px solid #eef2ec;padding:13px 0;align-items:start}.auditrow:last-child{border-bottom:0}.dot{width:8px;height:8px;border-radius:50%;background:#9db9a2;flex:none;margin-top:8px}.auditrow strong{font-size:12px;display:block}.auditrow span{color:#89968e;font-size:11px}
+.split{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:19px;align-items:start}.stack{display:grid;gap:17px}
+.field{display:grid;gap:7px;margin-bottom:19px}.field:last-child{margin-bottom:0}.field label{font-size:12px;color:#53675c;font-weight:850}.field small{color:#859189;font-size:11px}.field input,.field textarea{width:100%;border:1px solid #d8e1d9;background:#fbfcfa;border-radius:9px;padding:11px 13px;color:#294039;outline:none}.field textarea{resize:vertical;min-height:97px;line-height:1.75}.field input:focus,.field textarea:focus{border-color:#3a8870;box-shadow:0 0 0 3px #3a88701a}.field input:disabled,.field textarea:disabled{background:#eef0ed;color:#718078}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.divider{height:1px;background:#e8ede8;margin:24px 0}.actionbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.helpbox{background:#e8f1e9;border:1px solid #d8e7da;border-radius:13px;padding:22px;font-size:12px;color:#486559}.helpbox h3{margin:0 0 12px;font-size:15px;color:#234e41}.helpbox p{margin:0 0 12px}.helpbox ul{padding-left:18px;margin:0;line-height:2}.statusbox{margin-top:16px;border:1px solid #e3e8df;border-radius:12px;background:white;padding:17px}.statusbox p{margin:8px 0;font-size:12px;color:#65736a}
+.newslist{display:grid;gap:8px}.newsitem{width:100%;display:flex;gap:12px;align-items:center;text-align:left;border:1px solid #e3ebe4;background:#fff;border-radius:10px;padding:14px}.newsitem:hover,.newsitem.selected{border-color:#7ab099;background:#f4faf5}.newsitem .icon{display:grid;place-items:center;background:#e8f1e7;height:36px;width:36px;border-radius:10px;font-size:16px;flex:none}.newsitem strong{font-size:12px;display:block;line-height:1.5}.newsitem small{font-size:10px;color:#8c978f;display:block}.newsitem .badge{margin-left:auto;font-size:10px;white-space:nowrap;border-radius:40px;padding:3px 7px;background:#fff3d7;color:#936c2e}.newsitem .badge.live{background:#e1f2e5;color:#2b8056}
+.empty{background:#fafcf9;border:1px dashed #d9e4da;padding:30px;border-radius:12px;text-align:center;color:#77867b;font-size:13px}
+.previewtools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}.previewframe{width:100%;height:720px;border:1px solid #d8e3d9;border-radius:14px;background:white}.previewwrap{padding:12px;background:#e5e9e3;border-radius:18px}
+.upload{border:2px dashed #c4d9c9;border-radius:14px;padding:33px;text-align:center;background:#f7fbf7}.upload input{max-width:100%}.upload p{font-size:12px;color:#77897e}.imagebox{height:255px;border-radius:14px;border:1px solid #e2eae2;display:grid;place-items:center;overflow:hidden;background:#eaf1e9;margin-top:16px}.imagebox img{width:100%;height:100%;object-fit:cover}.imagebox span{color:#82968a;font-size:13px}.settingrow{display:flex;align-items:start;justify-content:space-between;gap:24px;border-bottom:1px solid #edf1ed;padding:19px 0}.settingrow:last-child{border-bottom:0}.settingrow h3{font-size:14px;margin:0 0 4px}.settingrow p{font-size:12px;color:#819087;margin:0;max-width:580px}
+#toast{position:fixed;right:22px;bottom:22px;background:#173e35;color:#fff;padding:13px 19px;border-radius:12px;box-shadow:0 14px 33px #0002;z-index:99;font-size:12px;max-width:360px}
+.login-cover{position:fixed;inset:0;z-index:100;background:linear-gradient(120deg,#123b36,#1c594d);display:flex;align-items:center;justify-content:center;padding:24px}.login-panel{width:min(480px,100%);background:#fff;border-radius:22px;padding:39px;box-shadow:0 22px 90px #0004}.login-logo{height:45px;width:45px;background:#14443d;border-radius:12px;display:grid;place-items:center;font-weight:900;color:white;font-size:21px}.login-panel h1{font-size:29px;color:#173f37;line-height:1.35;margin:22px 0 8px}.login-panel p{font-size:13px;color:#718077}.login-choice{width:100%;display:flex;align-items:center;text-align:left;gap:14px;border:1px solid #d9e6db;background:#f9fcf9;border-radius:12px;padding:16px;margin:10px 0}.login-choice:hover{border-color:#529274;background:#edf6ee}.login-choice .person{font-size:22px;background:#e7f0e7;border-radius:11px;height:44px;width:44px;display:grid;place-items:center}.login-choice strong{display:block;font-size:13px;color:#2b5346}.login-choice small{display:block;font-size:11px;color:#81918a}.login-choice .arr{margin-left:auto}
+.mobmen{display:none}.mobile-backdrop{display:none}
+@media(max-width:1050px){.sidebar{width:220px}.workspace{padding:28px 24px 60px}.topbar{padding:0 24px}.split{grid-template-columns:minmax(0,1fr) 235px}}
+@media(max-width:850px){.sidebar{position:fixed;left:0;top:36px;bottom:0;height:auto;z-index:50;transform:translateX(-105%);transition:transform .2s;box-shadow:16px 0 35px #102b2b26}.sidebar.open{transform:none}.mobile-backdrop.open{display:block;position:fixed;inset:36px 0 0;background:#0d252867;z-index:40}.mobmen{display:block;background:transparent;border:1px solid #dce6dd;border-radius:7px;padding:6px 9px}.topbar{height:72px}.top-title{margin-right:auto}.cards{grid-template-columns:repeat(3,1fr)}.panels,.split{grid-template-columns:1fr}.status-side{display:none}}
+@media(max-width:600px){.workspace{padding:22px 16px 50px}.topbar{padding:0 16px}.topbar h1{font-size:16px}.topbar p{font-size:10px}.top-actions .button{padding:7px 9px;font-size:11px}.cards{grid-template-columns:1fr;gap:10px}.metric{padding:16px;display:flex;gap:16px;align-items:center}.metric-icon{margin:0}.metric b{font-size:27px}.pagehead{display:block}.pagehead h2{font-size:25px}.page-actions{margin-top:17px}.panel{padding:20px}.two{grid-template-columns:1fr}.previewframe{height:600px}.login-panel{padding:25px}.settingrow{display:block}.settingrow .button{margin-top:12px}}
+</style>
+</head>
+<body>
+<div class="demo-strip">◆ DEMO MODE — 這是可操作的模擬後台，無真正帳戶驗證；更改只會儲存在本瀏覽器</div>
+<div class="login-cover" id="login-cover">
+  <div class="login-panel">
+    <div class="login-logo">雅</div>
+    <h1>歡迎使用網站管理後台</h1>
+    <p>李節街宿舍 · Content Management System<br>選擇一個示範身份，探索網站編輯流程。</p>
+    <div class="banner" style="margin:22px 0">這是<strong>模擬登入</strong>，不是正式帳戶或密碼驗證。請勿輸入任何真實個人資料。</div>
+    <button class="login-choice" data-enter="editor"><span class="person">✎</span><span><strong>以內容編輯員身份進入</strong><small>可以編輯、儲存草稿、發佈示範內容</small></span><span class="arr">→</span></button>
+    <button class="login-choice" data-enter="viewer"><span class="person">◎</span><span><strong>以檢視者身份進入</strong><small>只能查看內容，不能作任何修改</small></span><span class="arr">→</span></button>
+    <p style="text-align:center;margin:22px 0 0;font-size:12px"><a href="../index.html" style="color:#326b57;text-decoration:underline">返回網站原型 ↗</a></p>
+  </div>
+</div>
+<div class="mobile-backdrop" id="mobile-backdrop"></div>
+<div class="shell">
+  <aside class="sidebar" id="sidebar">
+    <a href="../index.html" class="brand"><span class="brandmark">雅</span><div><strong>李節街宿舍</strong><span>CONTENT STUDIO</span></div></a>
+    <div class="navlabel">工作空間 / WORKSPACE</div>
+    <nav class="snav" aria-label="內容管理功能">
+      <button class="navbtn active" data-nav="dashboard"><span class="navicon">▦</span>總覽 Dashboard</button>
+      <button class="navbtn" data-nav="content"><span class="navicon">✎</span>網站內容</button>
+      <button class="navbtn" data-nav="news"><span class="navicon">▤</span>最新消息</button>
+      <button class="navbtn" data-nav="media"><span class="navicon">▧</span>圖片管理</button>
+      <button class="navbtn" data-nav="preview"><span class="navicon">◉</span>網站預覽</button>
+    </nav>
+    <div class="navlabel">管理 / SETTINGS</div>
+    <nav class="snav"><button class="navbtn" data-nav="settings"><span class="navicon">⚙</span>示範設定</button></nav>
+    <div class="sidefooter"><a href="../index.html" target="_blank" rel="noopener">開啟公開網站 ↗</a>
+      <div class="userchip"><span class="avatar">D</span><div><strong id="side-user" style="display:block;color:#fff">Demo Editor</strong><span>瀏覽器本地示範</span></div></div>
+      <button class="button small" id="logout" style="background:transparent;color:#d7e6db;border-color:#ffffff38;width:100%">切換示範身份</button>
+    </div>
+  </aside>
+  <div class="layout">
+    <header class="topbar">
+      <button class="mobmen" id="menu" aria-label="打開側邊導覽" aria-expanded="false">☰</button>
+      <div class="top-title"><h1 id="top-title">網站總覽</h1><p>St. James' Settlement · Li Chit Street Hostel</p></div>
+      <div class="top-actions"><span class="tag warn" id="role-tag">DEMO / EDITOR</span><a class="button small" href="../index.html" target="_blank" rel="noopener">↗ 網站</a></div>
+    </header>
+    <main class="workspace">
+      <section class="page" id="page-dashboard">
+        <div class="pagehead"><div><div class="eyebrow">OVERVIEW</div><h2>歡迎回來 👋</h2><p>從這裏開始管理網站內容、最新消息及版面預覽。</p></div><div class="page-actions"><button class="button primary" data-go="content">✎ 編輯網站內容</button></div></div>
+        <div class="banner">示範提示：本 CMS 不會寫入 GitHub、Supabase 或任何伺服器。只有目前這個瀏覽器會看到已修改的內容。</div>
+        <div class="cards">
+          <div class="metric"><span class="metric-icon">▣</span><div><b>1</b><span>主要網站頁面</span></div></div>
+          <div class="metric"><span class="metric-icon">▤</span><div><b id="count-live">0</b><span>已發佈最新消息</span></div></div>
+          <div class="metric"><span class="metric-icon">◷</span><div><b id="count-draft">0</b><span>草稿或待更新項目</span></div></div>
+        </div>
+        <div class="panels">
+          <div class="panel"><h3>快速開始</h3><p class="hint">你想更新網站哪個部分？</p><div class="quicklinks">
+            <button class="quicklink" data-go="content"><span class="quickicon">✎</span><span><strong>修改服務介紹及收費</strong><small>編輯網站標題、文字、價錢及聯絡資料</small></span><span class="arr">→</span></button>
+            <button class="quicklink" data-go="news"><span class="quickicon">▤</span><span><strong>新增最新消息</strong><small>建立公告草稿，確認後發佈</small></span><span class="arr">→</span></button>
+            <button class="quicklink" data-go="media"><span class="quickicon">▧</span><span><strong>更換首頁圖片</strong><small>模擬上載圖片並在網站預覽</small></span><span class="arr">→</span></button>
+            <button class="quicklink" data-go="preview"><span class="quickicon">◉</span><span><strong>預覽整個網站</strong><small>比較已發佈內容與未發佈草稿</small></span><span class="arr">→</span></button>
+          </div></div>
+          <div class="panel"><h3>最近編輯記錄</h3><p class="hint">僅保存於這個瀏覽器，並非真正的伺服器審計記錄。</p><div class="audit" id="audit-list"></div></div>
+        </div>
+      </section>
+
+      <section class="page" id="page-content" hidden>
+        <div class="pagehead"><div><div class="eyebrow">PAGE EDITOR</div><h2>編輯網站內容</h2><p>先儲存草稿，再選擇發佈。草稿與已發佈的網站內容可以不同。</p></div><div class="page-actions"><span class="tag warn" id="content-status">未有待發佈修改</span></div></div>
+        <div class="split">
+          <div class="panel">
+            <form id="content-form">
+              <fieldset id="content-fields" style="margin:0;padding:0;border:0;min-width:0">
+              <h3>01 · 首頁主視覺</h3><p class="hint">最先出現在首頁的標題與簡介。</p>
+              <div class="field"><label for="heroTitle">主標題（可分行）</label><textarea id="heroTitle" name="heroTitle" rows="4" required maxlength="160"></textarea><small>每個換行代表一行；第 3 行起會採用強調色。</small></div>
+              <div class="field"><label for="heroLead">首頁簡介</label><textarea id="heroLead" name="heroLead" rows="3" required maxlength="600"></textarea></div>
+              <div class="divider"></div>
+              <h3>02 · 關於我們</h3><p class="hint">介紹宿舍的服務宗旨。</p>
+              <div class="field"><label for="aboutTitle">段落標題</label><textarea id="aboutTitle" name="aboutTitle" rows="2" required maxlength="160"></textarea></div>
+              <div class="field"><label for="aboutBody">服務簡介</label><textarea id="aboutBody" name="aboutBody" rows="4" maxlength="900"></textarea></div>
+              <div class="divider"></div>
+              <h3>03 · 住宿費用</h3><p class="hint">以下為示範資料，正式網站必須先核實最新收費。</p>
+              <div class="two">
+                <div class="field"><label for="feeNon">非綜援收費（HK$/月）</label><input id="feeNon" name="feeNon" type="number" min="0" max="1000000" step="1" required></div>
+                <div class="field"><label for="feeCssa">綜援收費（HK$/月）</label><input id="feeCssa" name="feeCssa" type="number" min="0" max="1000000" step="1" required></div>
+              </div>
+              <div class="divider"></div>
+              <h3>04 · 聯絡資料</h3>
+              <div class="field"><label for="address">地址</label><input id="address" name="address" maxlength="150" required></div>
+              <div class="field"><label for="phone">電話</label><input id="phone" name="phone" maxlength="30" required></div>
+              </fieldset>
+              <div class="actionbar editor-only"><button class="button" type="submit">儲存草稿</button><button class="button primary" type="button" id="publish-page">✓ 發佈頁面內容</button><button class="button" type="button" id="undo-page">還原至已發佈版本</button></div>
+              <div class="actionbar"><button class="button" type="button" id="preview-content">◉ 預覽草稿</button></div>
+            </form>
+          </div>
+          <div class="stack status-side">
+            <div class="helpbox"><h3>發佈流程</h3><p>這個 Demo 以一般 CMS 使用流程設計：</p><ul><li>在左側修改文字及數字</li><li>點擊「儲存草稿」</li><li>在網站預覽頁查看效果</li><li>準備好後點擊「發佈」</li></ul></div>
+            <div class="statusbox"><h3>編輯狀態</h3><p id="content-draft-status">草稿與網站版本一致。</p><p>正式版本會改用經過授權的資料庫，並保留伺服器審計記錄。</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="page-news" hidden>
+        <div class="pagehead"><div><div class="eyebrow">ANNOUNCEMENTS</div><h2>最新消息</h2><p>建立公告、修改草稿及發佈。只有已發佈的消息會出現在公開網站。</p></div><div class="page-actions"><button class="button primary editor-only" id="new-news">＋ 新增公告</button></div></div>
+        <div class="split">
+          <div class="panel"><h3>公告列表</h3><p class="hint">選擇左側消息可在右側編輯。</p><div id="news-list" class="newslist"></div></div>
+          <div class="panel"><h3 id="news-form-title">選擇一則公告</h3><p class="hint" id="news-form-hint">按「新增公告」開始。</p>
+            <form id="news-form" hidden>
+              <fieldset id="news-fields" style="padding:0;margin:0;border:0;min-width:0">
+                <div class="field"><label for="news-title">公告標題</label><input id="news-title" maxlength="120" required></div>
+                <div class="field"><label for="news-summary">簡短摘要</label><textarea id="news-summary" maxlength="350" rows="3"></textarea></div>
+                <div class="field"><label for="news-body">公告內容</label><textarea id="news-body" maxlength="2500" rows="5"></textarea></div>
+              </fieldset>
+              <div class="actionbar editor-only"><button class="button" type="submit">儲存草稿</button><button class="button primary" type="button" id="publish-news">✓ 發佈</button></div>
+              <div class="actionbar editor-only"><button class="button" type="button" id="unpublish-news">取消發佈</button><button class="button danger" type="button" id="delete-news">刪除公告</button></div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="page-media" hidden>
+        <div class="pagehead"><div><div class="eyebrow">MEDIA LIBRARY</div><h2>首頁圖片管理</h2><p>示範上載圖片及發佈。為避免儲存空間不足，只接受較小的圖片。</p></div></div>
+        <div class="split">
+          <div class="panel"><h3>主視覺圖片</h3><p class="hint">上載示範圖片後可在網站預覽看到效果。</p>
+            <div class="upload"><div style="font-size:32px">▧</div><p>選擇 JPG、PNG 或 WebP 圖片，大小不超過 700 KB。</p><input class="editor-only" id="image-input" type="file" accept="image/png,image/jpeg,image/webp"></div>
+            <div class="imagebox" id="media-preview"><span>尚未上載圖片，目前使用插圖</span></div>
+            <div class="actionbar editor-only"><button class="button primary" id="publish-image" type="button">✓ 發佈圖片</button><button class="button" id="remove-image" type="button">還原至預設插圖</button></div>
+          </div>
+          <div class="helpbox status-side"><h3>圖片示範備註</h3><p>圖片內容僅以 Base64 編碼形式儲存於瀏覽器 LocalStorage，沒有上傳到 GitHub、Supabase 或互聯網。</p><p>正式 CMS 會使用受權限控制的檔案儲存服務，以及尺寸、格式及安全檢查。</p></div>
+        </div>
+      </section>
+
+      <section class="page" id="page-preview" hidden>
+        <div class="pagehead"><div><div class="eyebrow">SITE PREVIEW</div><h2>網站效果預覽</h2><p>在這裡比較草稿與已發佈的內容，並可另開分頁查看完整網站。</p></div></div>
+        <div class="banner">草稿預覽只用於這個 Demo。在正式系統中，草稿網址需要有效登入與權限檢查。</div>
+        <div class="previewtools">
+          <button class="button primary" id="show-draft">◉ 查看草稿</button>
+          <button class="button" id="show-live">▣ 查看已發佈版</button>
+          <button class="button" id="open-preview">↗ 在新分頁開啟</button>
+          <span id="preview-label" class="tag warn">草稿預覽</span>
+        </div>
+        <div class="previewwrap"><iframe id="preview-frame" class="previewframe" title="李節街宿舍網站預覽" loading="lazy"></iframe></div>
+      </section>
+
+      <section class="page" id="page-settings" hidden>
+        <div class="pagehead"><div><div class="eyebrow">DEMO SETTINGS</div><h2>示範設定</h2><p>管理本地示範資料及查看安全限制。</p></div></div>
+        <div class="panel">
+          <div class="settingrow"><div><h3>示範登入身份</h3><p>兩個模擬角色：編輯員及檢視者。正式系統才會使用獨立用戶帳戶與密碼及 MFA。</p></div><button class="button" id="switch-user">切換身份</button></div>
+          <div class="settingrow"><div><h3>匯出示範內容</h3><p>可下載 JSON 備份示範文字、公告及圖片。請勿用於保存機密資料。</p></div><button class="button" id="export-json">↓ 匯出 JSON</button></div>
+          <div class="settingrow"><div><h3>重設全部示範內容</h3><p>清除目前瀏覽器內的示範修改、公告及活動紀錄，恢復原始設計內容。</p></div><button class="button danger editor-only" id="reset-demo">重設示範</button></div>
+          <div class="settingrow"><div><h3>系統狀態</h3><p>模式：Browser-only demo　|　正式資料庫：未連接　|　真正密碼登入：未啟用　|　公開網站：未部署到正式網域</p></div><span class="tag warn">DEMO ONLY</span></div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+<div id="toast" role="status" aria-live="polite" hidden></div>
+<script>
+(function(){
+  'use strict';
+  var KEY='lch-cms-demo-v1',SESSION='lch-cms-demo-role';
+  var defaults={
+    heroTitle:'一個安心\n落腳的地方。\n一步一步，\n重新出發。',
+    heroLead:'李節街宿舍為露宿及面臨露宿危機的成年男性提供短期住宿與生活支援，讓舍友在安穩的環境中整理生活、規劃下一步。',
+    aboutTitle:'不止有一張床，\n更有重新規劃生活的空間。',
+    aboutBody:'我們期望透過短期住宿，讓舍友建立穩定的日常生活習慣、學習與人相處，並與轉介社工共同探索未來的長遠住宿安排。',
+    feeNon:'1890',feeCssa:'2520',address:'香港灣仔李節街 1 號 1–2 樓',phone:'2865 7590'
+  };
+  function fresh(){
+    return {version:1,pages:{draft:JSON.parse(JSON.stringify(defaults)),published:JSON.parse(JSON.stringify(defaults))},
+      news:[{id:'sample-1',draft:{title:'示範公告：歡迎使用網站後台',summary:'這是一則未發佈的示範公告。你可以編輯內容，再按「發佈」。',body:'此公告並非正式消息，只供測試內容管理功能。'},live:null,updatedAt:new Date().toISOString()}],
+      media:{draft:null,published:null},activity:[{action:'已建立本地示範資料',time:new Date().toISOString()}]};
+  }
+  var state;try{state=JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){}
+  if(!state||state.version!==1||!state.pages||!state.pages.draft)state=fresh();
+  var role=sessionStorage.getItem(SESSION),page='dashboard',selectedNews=null,previewType='draft';
+  var $=function(id){return document.getElementById(id)};
+  var esc=function(v){return String(v===undefined||v===null?'':v).replace(/[&<>"']/g,function(ch){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]})};
+  function toast(s){var el=$('toast');el.textContent=s;el.hidden=false;clearTimeout(toast.timer);toast.timer=setTimeout(function(){el.hidden=true},3400)}
+  function persist(){
+    try{localStorage.setItem(KEY,JSON.stringify(state));return true}
+    catch(e){toast('瀏覽器儲存空間不足；請縮小圖片或匯出資料。');return false}
+  }
+  function editor(){return role==='editor'}
+  function note(action){state.activity.unshift({action:action,time:new Date().toISOString()});state.activity=state.activity.slice(0,18)}
+  function enter(r){
+    role=r;sessionStorage.setItem(SESSION,r);$('login-cover').hidden=true;
+    $('side-user').textContent=r==='editor'?'Demo Editor':'Demo Viewer';
+    $('role-tag').textContent=r==='editor'?'DEMO / EDITOR':'DEMO / VIEWER';
+    document.querySelectorAll('.editor-only').forEach(function(x){x.hidden=!editor()});
+    $('content-fields').disabled=!editor();$('news-fields').disabled=!editor();
+    show('dashboard');persist();
+    toast(r==='editor'?'已進入編輯員示範':'已進入檢視者示範（唯讀）');
+  }
+  function logout(){sessionStorage.removeItem(SESSION);role=null;$('login-cover').hidden=false;$('sidebar').classList.remove('open');$('mobile-backdrop').classList.remove('open')}
+  function show(id){
+    page=id;
+    document.querySelectorAll('.page').forEach(function(p){p.hidden=p.id!=='page-'+id});
+    document.querySelectorAll('[data-nav]').forEach(function(b){b.classList.toggle('active',b.dataset.nav===id)});
+    var names={dashboard:'網站總覽',content:'網站內容',news:'最新消息',media:'圖片管理',preview:'網站預覽',settings:'示範設定'};
+    $('top-title').textContent=names[id]||'內容管理';
+    $('sidebar').classList.remove('open');$('mobile-backdrop').classList.remove('open');$('menu').setAttribute('aria-expanded','false');
+    if(id==='dashboard')dashboard();
+    if(id==='content')content();
+    if(id==='news')renderNews();
+    if(id==='media')renderMedia();
+    if(id==='preview')loadPreview();
+    window.scrollTo({top:0,behavior:'instant'});
+  }
+  function dashboard(){
+    var live=state.news.filter(function(x){return !!x.live}).length;
+    var drafts=state.news.filter(function(x){return !x.live||JSON.stringify(x.draft)!==JSON.stringify(x.live)}).length;
+    if(JSON.stringify(state.pages.draft)!==JSON.stringify(state.pages.published))drafts++;
+    if(state.media.draft!==state.media.published)drafts++;
+    $('count-live').textContent=live;$('count-draft').textContent=drafts;
+    $('audit-list').innerHTML=state.activity.length?state.activity.slice(0,7).map(function(x){
+      return '<div class="auditrow"><span class="dot"></span><div><strong>'+esc(x.action)+'</strong><span>'+esc(new Date(x.time).toLocaleString('zh-HK'))+'</span></div></div>';
+    }).join(''):'<div class="empty">尚未有任何編輯記錄。</div>';
+  }
+  function formValues(){
+    var form=$('content-form');
+    if(!form.reportValidity())return null;
+    var c={};
+    Object.keys(defaults).forEach(function(k){c[k]=String($(k).value||'').trim()});
+    return c;
+  }
+  function content(){
+    Object.keys(defaults).forEach(function(k){$(k).value=state.pages.draft[k]===undefined?'':state.pages.draft[k]});
+    var changed=JSON.stringify(state.pages.draft)!==JSON.stringify(state.pages.published);
+    $('content-status').textContent=changed?'草稿與已發佈版本不同':'內容已同步';
+    $('content-status').className=changed?'tag warn':'tag live';
+    $('content-draft-status').textContent=changed?'已有未發佈的內容修改。':'草稿與已發佈版本一致。';
+  }
+  function savePage(publish){
+    if(!editor())return toast('檢視者沒有編輯權限');
+    var c=formValues();if(!c)return false;
+    var old=JSON.stringify(state);
+    state.pages.draft=c;
+    if(publish)state.pages.published=JSON.parse(JSON.stringify(c));
+    note(publish?'已發佈網站頁面內容':'已儲存網站頁面草稿');
+    if(!persist()){state=JSON.parse(old);return false}
+    content();toast(publish?'頁面已發佈至本地示範':'草稿已儲存在本瀏覽器');
+    return true;
+  }
+  function renderNews(){
+    var el=$('news-list');
+    el.innerHTML=state.news.length?state.news.map(function(n){
+      var selected=n.id===selectedNews?' selected':'';
+      return '<button class="newsitem'+selected+'" data-news-id="'+esc(n.id)+'"><span class="icon">▤</span><span style="min-width:0"><strong>'+esc(n.draft.title||'(未命名公告)')+'</strong><small>'+esc(new Date(n.updatedAt).toLocaleString('zh-HK'))+'</small></span><span class="badge'+(n.live?' live':'')+'">'+(n.live?'已發佈':'草稿')+'</span></button>';
+    }).join(''):'<div class="empty">未有任何公告。<br>可按「新增公告」建立第一則消息。</div>';
+    el.querySelectorAll('[data-news-id]').forEach(function(b){b.addEventListener('click',function(){selectedNews=b.dataset.newsId;renderNews()})});
+    var n=state.news.find(function(x){return x.id===selectedNews});
+    $('news-form').hidden=!n;
+    $('news-form-title').textContent=n?'編輯公告':'選擇一則公告';
+    $('news-form-hint').textContent=n?(n.live?'此公告已發佈；編輯草稿不會直接改變網站。':'此公告尚未發佈。'):'按「新增公告」開始。';
+    if(n){$('news-title').value=n.draft.title;$('news-summary').value=n.draft.summary;$('news-body').value=n.draft.body;
+      $('unpublish-news').disabled=!n.live;
+      $('news-fields').disabled=!editor();}
+  }
+  function currentNews(){return state.news.find(function(n){return n.id===selectedNews})}
+  function newsValues(){if(!$('news-form').reportValidity())return null;
+    return {title:$('news-title').value.trim(),summary:$('news-summary').value.trim(),body:$('news-body').value.trim()};
+  }
+  function saveNews(publish){
+    if(!editor())return toast('檢視者沒有編輯權限');
+    var n=currentNews(),v=newsValues();if(!n||!v||!v.title)return toast('請輸入公告標題');
+    n.draft=v;if(publish)n.live=JSON.parse(JSON.stringify(v));
+    n.updatedAt=new Date().toISOString();note((publish?'已發佈公告：':'已儲存公告草稿：')+v.title);
+    if(persist()){renderNews();toast(publish?'公告已發佈至本地示範':'公告草稿已儲存')}
+  }
+  function renderMedia(){
+    var img=state.media.draft,box=$('media-preview');
+    box.replaceChildren();
+    if(img){var el=document.createElement('img');el.src=img;el.alt='上載圖片草稿';box.appendChild(el)}
+    else{var span=document.createElement('span');span.textContent='目前使用原有插圖';box.appendChild(span)}
+  }
+  function previewUrl(){return '../index.html'+(previewType==='draft'?'?cmsPreview=draft':'')}
+  function loadPreview(){
+    $('show-draft').className=previewType==='draft'?'button primary':'button';
+    $('show-live').className=previewType==='live'?'button primary':'button';
+    $('preview-label').textContent=previewType==='draft'?'草稿預覽':'已發佈版本';
+    $('preview-label').className=previewType==='draft'?'tag warn':'tag live';
+    $('preview-frame').src=previewUrl()+(previewUrl().includes('?')?'&':'?')+'refresh='+Date.now();
+  }
+  document.querySelectorAll('[data-enter]').forEach(function(b){b.addEventListener('click',function(){enter(b.dataset.enter)})});
+  document.querySelectorAll('[data-nav],[data-go]').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.nav||b.dataset.go)})});
+  $('logout').addEventListener('click',logout);$('switch-user').addEventListener('click',logout);
+  $('menu').addEventListener('click',function(){var v=$('sidebar').classList.toggle('open');$('mobile-backdrop').classList.toggle('open',v);this.setAttribute('aria-expanded',String(v))});
+  $('mobile-backdrop').addEventListener('click',function(){$('sidebar').classList.remove('open');$('mobile-backdrop').classList.remove('open')});
+  $('content-form').addEventListener('submit',function(e){e.preventDefault();savePage(false)});
+  $('publish-page').addEventListener('click',function(){savePage(true)});
+  $('undo-page').addEventListener('click',function(){if(!editor())return;if(!confirm('將草稿還原至已發佈版本？'))return;state.pages.draft=JSON.parse(JSON.stringify(state.pages.published));note('已還原頁面草稿');persist();content();toast('已還原草稿')});
+  $('preview-content').addEventListener('click',function(){if(editor()){if(!savePage(false))return}previewType='draft';show('preview')});
+  $('new-news').addEventListener('click',function(){
+    if(!editor())return;
+    var n={id:'news-'+Date.now()+'-'+Math.floor(Math.random()*10000),draft:{title:'新公告',summary:'',body:''},live:null,updatedAt:new Date().toISOString()};
+    state.news.unshift(n);selectedNews=n.id;note('已新增公告草稿');persist();renderNews();
+    $('news-title').focus();$('news-title').select();
+  });
+  $('news-form').addEventListener('submit',function(e){e.preventDefault();saveNews(false)});
+  $('publish-news').addEventListener('click',function(){saveNews(true)});
+  $('unpublish-news').addEventListener('click',function(){if(!editor())return;var n=currentNews();if(!n||!n.live)return;
+    if(!confirm('取消發佈這則公告？'))return;n.live=null;note('已取消發佈公告：'+n.draft.title);persist();renderNews();toast('公告已取消發佈')});
+  $('delete-news').addEventListener('click',function(){if(!editor())return;var n=currentNews();if(!n)return;
+    if(!confirm('確定刪除這則示範公告？此操作不可撤銷。'))return;
+    state.news=state.news.filter(function(x){return x.id!==n.id});selectedNews=null;note('已刪除公告：'+n.draft.title);persist();renderNews();toast('公告已刪除')});
+  $('image-input').addEventListener('change',function(e){
+    if(!editor())return;
+    var file=e.target.files&&e.target.files[0];if(!file)return;
+    if(!['image/png','image/jpeg','image/webp'].includes(file.type)){toast('只支援 PNG、JPG、WebP');this.value='';return}
+    if(file.size>700000){toast('圖片大小不可超過 700 KB');this.value='';return}
+    var reader=new FileReader();
+    reader.onload=function(){var before=state.media.draft;state.media.draft=reader.result;
+      note('已上載示範圖片草稿');if(!persist()){state.media.draft=before;state.activity.shift()}
+      else{renderMedia();toast('圖片草稿已儲存')}}
+    reader.readAsDataURL(file);
+  });
+  $('publish-image').addEventListener('click',function(){if(!editor())return;state.media.published=state.media.draft;note('已發佈首頁示範圖片');if(persist())toast('已發佈圖片至本地示範')});
+  $('remove-image').addEventListener('click',function(){if(!editor())return;
+    state.media.draft=null;state.media.published=null;note('已還原預設插圖');persist();$('image-input').value='';renderMedia();toast('已還原插圖')});
+  $('show-draft').addEventListener('click',function(){previewType='draft';loadPreview()});
+  $('show-live').addEventListener('click',function(){previewType='live';loadPreview()});
+  $('open-preview').addEventListener('click',function(){window.open(previewUrl(),'_blank','noopener,noreferrer')});
+  $('export-json').addEventListener('click',function(){
+    var blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download='lch-cms-demo-backup.json';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url)},3000);
+    toast('已匯出示範 JSON');
+  });
+  $('reset-demo').addEventListener('click',function(){if(!editor())return;if(!confirm('重設全部示範內容？此操作不可撤銷。'))return;
+    state=fresh();selectedNews=null;persist();show('dashboard');toast('示範資料已重設')});
+  if(role==='editor'||role==='viewer')enter(role);else $('login-cover').hidden=false;
+  persist();
+})();
+</script>
+</body></html>
